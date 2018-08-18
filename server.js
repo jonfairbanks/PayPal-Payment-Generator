@@ -17,7 +17,7 @@ var serverHost = process.env.SERVER_HOST
 // Get API credentials
 app.get('/', function(req, res){
 	res.send(
-	"<h2>PayPal SandBox Payment Generator</h2><br><h4>Create Payment</h4><form action='/create-payment'>API Key:<br><input type='text' name='APIKey' value=''><br>API Secret:<br><input type='text' name='APISecret' value=''><br><br><input type='submit' value='Submit'></form> \
+	"<h2>PayPal Sandbox Payment Generator</h2><br><h4>Create Payment</h4><form action='/create-payment'>API Key:<br><input type='text' name='APIKey' value=''><br>API Secret:<br><input type='text' name='APISecret' value=''><br><br><input type='submit' value='Submit'></form> \
 </hr><h4>Create Billing Agreement</h4><form action='/create-agreement'>API Key:<br><input type='text' name='APIKey' value=''><br>API Secret:<br><input type='text' name='APISecret' value=''><br><br><input type='submit' value='Submit'></form>"
 ); })
 
