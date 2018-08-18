@@ -10,15 +10,11 @@ var app = express();
 app.use(bodyParser.urlencoded({	extended: false }))
 var serverHost = process.env.SERVER_HOST
 
-
-
-
-
 // Get API credentials
 app.get('/', function(req, res){
 	res.send(
-	"<h2>PayPal Sandbox Payment Generator</h2><br><h4>Create Payment</h4><form action='/create-payment'>API Key:<br><input type='text' name='APIKey' value=''><br>API Secret:<br><input type='text' name='APISecret' value=''><br><br><input type='submit' value='Submit'></form> \
-</hr><h4>Create Billing Agreement</h4><form action='/create-agreement'>API Key:<br><input type='text' name='APIKey' value=''><br>API Secret:<br><input type='text' name='APISecret' value=''><br><br><input type='submit' value='Submit'></form>"
+	"<h2>PayPal Sandbox Payment Generator</h2><br><h4>Create Payment</h4><form action='/create-payment'>Client ID:<br><input type='text' name='APIKey' value=''><br>API Secret:<br><input type='text' name='APISecret' value=''><br><br><input type='submit' value='Submit'></form> \
+</hr><h4>Create Billing Agreement</h4><form action='/create-agreement'>Client ID:<br><input type='text' name='APIKey' value=''><br>API Secret:<br><input type='text' name='APISecret' value=''><br><br><input type='submit' value='Submit'></form>"
 ); })
 
 // Create payment
@@ -70,7 +66,6 @@ app.get('/payment-approved', function(req, res){
 // Execute Agreement
 app.get('/agreement-approved', function(req, res){
 	var paymentToken = req.query.token
-
 	paypal.billingAgreement.execute(paymentToken, {}, function (error, billingAgreement) {
 	    if (error) {
 	        console.log(error);
@@ -81,13 +76,10 @@ app.get('/agreement-approved', function(req, res){
 					res.send("Agreement approved");
 	    }
 	});
-
-
 })
 
 function createPayment(apiKey, apiSecret, callback){
 	if(apiKey && apiSecret){
-
 		//configure paypal
 		paypal.configure({
 			'mode': 'sandbox',
@@ -141,7 +133,6 @@ function createPayment(apiKey, apiSecret, callback){
 
 function createBillingPlan(apiKey, apiSecret, callback){
 	if(apiKey && apiSecret){
-
 		//configure paypal
 		paypal.configure({
 			'mode': 'sandbox',
@@ -297,8 +288,6 @@ function createBillingPlan(apiKey, apiSecret, callback){
 	}
 }
 
-
-
 function executePayment(payerId, paymentId, callback){
 		var execute_payment_json = {
 				"payer_id": payerId,
@@ -319,7 +308,6 @@ function executePayment(payerId, paymentId, callback){
 				}
 		});
 }
-
 
 var port = null;
 if(process.env.PORT){ port = process.env.PORT; }else{ port = 3000; } // Default port is 8888 unless passed
